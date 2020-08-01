@@ -51,7 +51,6 @@ The breadboard with all sensors wired up:
 
 
 ## Supporting Artifacts
-- [Link to repo](https://github.com/BU-EC444/Team18-Chen-Dorsey-Erb/edit/master/quest-2)
 - [Link to video demo](https://youtu.be/JaBqYMNhDMA)
 
 
@@ -72,12 +71,3 @@ https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.p
 The thermistor has a resolution of ±1ºC. The ultrasonic sensor has a 5mm resolution (when using the analog voltage output pin), and can be sampled every 100ms, or at a 1Hz sampling rate. The ultrasonic sensor can have a resolution up to 1mm when using the serial output or the pulse width. The infrared sensor has a 26Hz sampling rate.
 
 The ESP32 ADC pins used a bit width resolution of 12, and it have a sampling rate of 200,000 samples per second. Because the sensors have lower sampling rates than the ESP32, the sampling rates for the sensors are the limiting factor for this project. 
-
------
-
-## Reminders
-
-- Video recording in landscape not to exceed 90s
-- Each team member appears in video
-- Make sure video permission is set accessible to the instructors
-- Repo is private
