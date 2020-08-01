@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/CMakeFiles/bootloader
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/CMakeFiles/bootloader.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/CMakeFiles/bootloader-complete.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule

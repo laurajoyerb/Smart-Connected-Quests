@@ -1,0 +1,13 @@
+# Target labels
+ mconf-idf
+# Source files and their labels
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader/CMakeFiles/mconf-idf
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader/CMakeFiles/mconf-idf.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader/CMakeFiles/mconf-idf-complete.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-install.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-mkdir.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-download.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-update.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-patch.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-configure.rule
+/Users/laurajoyerb/Documents/MyCode/EC444/Team18-Chen-Dorsey-Erb/quest-1/code/retroclock/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-build.rule
