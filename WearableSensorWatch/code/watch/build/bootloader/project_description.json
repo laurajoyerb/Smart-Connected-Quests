@@ -1,0 +1,18 @@
+{
+    "project_name":       "bootloader",
+    "project_path":       "C:/Users/erind/OneDrive/Desktop/esp-idf/components/bootloader/subproject",
+    "build_dir":          "C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-3/code/watch/build/bootloader",
+    "config_file":        "C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-3/code/watch/sdkconfig",
+    "config_defaults":    "C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-3/code/watch/sdkconfig.defaults",
+    "app_elf":            "bootloader.elf",
+    "app_bin":            "bootloader.bin",
+    "git_revision":       "v3.2.2",
+    "phy_data_partition": "",
+    "monitor_baud" : "115200",
+    "config_environment" : {
+        "COMPONENT_KCONFIGS" : " C:/Users/erind/OneDrive/Desktop/esp-idf/components/spi_flash/Kconfig C:/Users/erind/OneDrive/Desktop/esp-idf/components/esp32/Kconfig C:/Users/erind/OneDrive/Desktop/esp-idf/components/log/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : " C:/Users/erind/OneDrive/Desktop/esp-idf/components/esptool_py/Kconfig.projbuild C:/Users/erind/OneDrive/Desktop/esp-idf/components/partition_table/Kconfig.projbuild C:/Users/erind/OneDrive/Desktop/esp-idf/components/bootloader/Kconfig.projbuild"
+    },
+    "build_components" : [ "soc", "spi_flash", "micro-ecc", "bootloader_support", "main", "esptool_py", "partition_table", "esp32", "log", "bootloader" ],
+    "build_component_paths" : [ "C:/Users/erind/OneDrive/Desktop/esp-idf/components/soc", "C:/Users/erind/OneDrive/Desktop/esp-idf/components/spi_flash", "C:/Users/erind/OneDrive/Desktop/esp-idf/components/micro-ecc", "C:/Users/erind/OneDrive/Desktop/esp-idf/components/bootloader_support", "C:/Users/erind/OneDrive/Desktop/esp-idf/components/bootloader/subproject/main", "C:/Users/erind/OneDrive/Desktop/esp-idf/components/esptool_py", "C:/Users/erind/OneDrive/Desktop/esp-idf/components/partition_table", "C:/Users/erind/OneDrive/Desktop/esp-idf/components/esp32", "C:/Users/erind/OneDrive/Desktop/esp-idf/components/log", "C:/Users/erind/OneDrive/Desktop/esp-idf/components/bootloader" ]
+}
