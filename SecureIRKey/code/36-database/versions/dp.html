@@ -1,0 +1,84 @@
+<!-- client side -->
+
+<!doctype html>
+<html>
+
+<!-- HTML HEAD -->
+<head>
+	<title>Line Chart</title>
+	<!-- Source for Canvas JS - points to the web - needs internet -->
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<!-- Source for Socket.io - this one is local -->
+	<script src="/socket.io/socket.io.js"></script>
+
+	<style>
+  	canvas{
+  		-moz-user-select: none;
+  		-webkit-user-select: none;
+  		-ms-user-select: none;
+  	}
+	</style>
+</head>
+
+<body>
+	<!-- HTML layout -->
+  <h1>Example Webpage</h1> <br>
+  <p>Time of new data in ms from some date in 1970s: </p>
+	<div id="message_disp"></div>
+	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+	<!-- Script to handle charting -->
+	<script>
+		var dps = [];
+		var chart = new CanvasJS.Chart("chartContainer", {
+			exportEnabled: true,
+			animationEnabled: true,
+			zoomEnabled: true,
+			title :{
+				text: "Dynamic Line Chart"
+			},
+			axisY: {
+				includeZero: false,
+        title : "Temperature (deg F)"
+			},
+      axisX: {
+        title : "Time from some 1970s date in seconds"
+			},
+			data: [{
+				type: "line",
+				markerSize: 0,
+				dataPoints: dps
+			}]
+		});
+
+	</script>
+
+	<!-- Script to handle socket and also to update chart datapoints -->
+	<script>
+    var timestamp;
+    var deviceID;
+    var temperature;
+		var socket = io();
+		socket.on('message', function(msg){
+
+      // Parse received message from server
+      console.log(msg);
+      timestamp = Object.keys(msg);
+      deviceID = msg[Object.keys(msg)][0].id;
+      temperature = msg[Object.keys(msg)][0].temp;
+			document.getElementById("message_disp").innerHTML =  Object.keys(msg);
+
+			// Update data array
+			dps.push({
+				x: timestamp/1000,
+				y: temperature
+			});
+
+			chart.render();
+
+		});
+	</script>
+
+</body>
+
+</html>

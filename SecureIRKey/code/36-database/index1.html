@@ -1,0 +1,155 @@
+<!-- client side -->
+
+<!doctype html>
+<html>
+
+<!-- HTML HEAD -->
+<head>
+	<title>Sensors Data</title>
+	<!-- Source for Canvas JS - points to the web - needs internet -->
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<!-- Source for Socket.io - this one is local -->
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+	<!-- HTML layout -->
+  <h1>Smoke and Temperature Data</h1> <br>
+	<div id="sensorChartContainer" style="height: 300px; width: 100%;"></div>
+	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+	<div align-content="center" style="background-color:aliceblue;">
+	</div>
+
+	<script>
+	var sensor1 = [];
+	var sensor2 = [];
+	var sensor3 = [];
+	var sensor4 = [];
+	var sensor5 = [];
+	var smoke1 = [];
+	var smoke2 = [];
+	var smoke3 = [];
+	var smoke4 = [];
+	var smoke5 = [];
+
+	function toggleDataSeries(e) {
+		if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+			e.dataSeries.visible = false;
+		} else {
+			e.dataSeries.visible = true;
+		}
+		chart.render();
+	}
+
+	// Chart for sensor temperature data
+	var sensorChart = new CanvasJS.Chart("sensorChartContainer", {
+		title: {
+			text: "Temperature Data"
+		},
+		axisX: {
+			title: "Time"
+		},
+		axisY: {
+			title: "Temperature"
+		},
+		toolTip: {
+			shared: true
+		},
+		legend: {
+			cursor: "pointer",
+			verticalAlign: "top",
+			horizontalAlign: "center",
+			dockInsidePlotArea: true,
+			itemclick: toggleDataSeries
+		},
+		data: [{
+			type: "line",
+			name: "Sensor 1",
+			showInLegend: true,
+			markerSize: 0,
+			dataPoints: sensor1
+		},
+		{
+	    type: "line",
+			name: "Sensor 2",
+			showInLegend: true,
+			markerSize: 0,
+			dataPoints: sensor2
+		},
+		{
+	    type: "line",
+			name: "Sensor 3",
+			showInLegend: true,
+			markerSize: 0,
+			dataPoints: sensor3
+		},
+	  {
+	    type: "line",
+			name: "Sensor 4",
+			showInLegend: true,
+			markerSize: 0,
+			dataPoints: sensor4
+		},
+	  {
+	    type: "line",
+			name: "Sensor 5",
+			showInLegend: true,
+			markerSize: 0,
+			dataPoints: sensor5
+		}]
+	});
+
+	</script>
+
+	<!-- Script to handle socket and also to update chart datapoints -->
+	<script>
+		var socket = io();
+		var timeData;
+		var idData;
+		var smokeData;
+		var tempData;
+
+		socket.on('message', function(dataIn){
+			console.log(dataIn);
+			// Take database data and put it into structures for chart
+      timeData = parseInt(dataIn[Object.keys(dataIn)][0].time, 10);
+			idData = dataIn[Object.keys(dataIn)][0].id;
+			smokeData = parseInt(dataIn[Object.keys(dataIn)][0].smoke, 10);
+			tempData = parseFloat(dataIn[Object.keys(dataIn)][0].temp);
+
+      if (sensor1.length < 8)
+			{
+        if (idData == 1){
+          sensor1.push({ x: timeData, y: tempData});
+          smoke1.push({ x: timeData, y: smokeData});
+        } else if (idData == 2){
+          sensor2.push({ x: timeData, y: tempData});
+          smoke2.push({ x: timeData, y: smokeData});
+        } else if (idData == 3){
+          sensor3.push({ x: timeData, y: tempData});
+          smoke3.push({ x: timeData, y: smokeData});
+        } else if (idData == 4){
+          sensor4.push({ x: timeData, y: tempData});
+          smoke4.push({ x: timeData, y: smokeData});
+        } else if (idData == 5){
+          sensor5.push({ x: timeData, y: tempData});
+          smoke5.push({ x: timeData, y: smokeData});
+        }
+      }
+			//console.log(sensor1);
+
+		});
+		//sensorChart.render();
+
+	</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

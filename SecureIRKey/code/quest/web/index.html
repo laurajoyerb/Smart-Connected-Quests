@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<title>Quest 5: Secure Key</title>
+<script src="/socket.io/socket.io.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<body>
+
+    <div class="w3-container">
+
+        <div class="w3-center">
+            <h1 class="w3-xxxlarge"
+                style="text-align:left;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color:#1261A0;">
+                QUEST 5: SECURE KEY</h1>
+            <h1 class="w3-xlarge" style="text-align:left;font-family:candara;">Group 18</h1>
+            <h1 class="w3-large" style="text-align:left;font-family:candara;">Yuting Chen, Erin Dorsey, Laura Joy Erb
+            </h1>
+        </div>
+
+        <div class="w3-padding-32"></div>
+
+        <div class="w3-center">
+            <h1 class="w3-xxlarge" style="text-align:center;font-family:candara;">
+                ACCESS HISTORY</h1>
+            <hr class="w3-border-grey" style="margin:auto; width:70%">
+        </div>
+
+        <div class="w3-padding-16"></div>
+
+        <div class="w3-responsive w3-card-4 w3-center" style="width:100%;">
+
+            <table id="keyTable" class="w3-table w3-center w3-card-4">
+                    <tr class="w3-theme w3-center">
+                        <th>Fob ID</th>
+                        <th>Hub ID</th>
+                        <th>Person</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+
+            </table>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    var socket = io();
+    var i;
+    var latestHour = 0;
+    var latestMin = 0;
+    var latestSec = 0;
+
+    socket.on('sendData', function (data) {
+        console.log(data);
+        var str = data[Object.keys(data)][0].time.split(":");
+
+        if ((str[0] != latestHour) || (str[1] != latestMin) || (str[2] != latestSec)) {
+          if (str[0] > latestHour) {
+            latestHour = str[0];
+            latestMin = str[1];
+            latestSec = str[2];
+          } else if (str[1] > latestMin && str[0] == latestHour) {
+            latestMin = str[1];
+            latestSec = str[2];
+          } else if (str[2] > latestSec && str[1] == latestMin && str[0] == latestHour) {
+            latestSec = str[2];
+          }
+
+          if (str[0] == latestHour && str[1] == latestMin && str[2] == latestSec) {
+              var t = document.getElementById('keyTable');
+              var row = t.insertRow(1);
+              var fob_cell = row.insertCell(0);
+              var hub_cell = row.insertCell(1);
+              var person_cell = row.insertCell(2);
+              var time_cell = row.insertCell(3);
+              var location_cell = row.insertCell(4);
+              var status_cell = row.insertCell(5);
+
+              // Populate cells with data
+              fob_cell.innerHTML = data[Object.keys(data)][0].fob_ID;
+              hub_cell.innerHTML = data[Object.keys(data)][0].hub_ID;
+              person_cell.innerHTML = data[Object.keys(data)][0].person;
+              time_cell.innerHTML = data[Object.keys(data)][0].time;
+              location_cell.innerHTML = data[Object.keys(data)][0].location;
+              status_cell.innerHTML = data[Object.keys(data)][0].status;
+          }
+        }
+    });
+
+</script>
+
+</html>
