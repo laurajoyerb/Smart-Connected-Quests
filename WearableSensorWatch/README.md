@@ -62,7 +62,6 @@ https://randomnerdtutorials.com/esp32-deep-sleep-arduino-ide-wake-up-sources/ �
 https://macintoshhowto.com/internet/how-to-lower-the-power-output-of-your-wifi-router-if-you-live-in-the-us.html  
 
 ## Supporting Artifacts
-- [Link to repo](https://github.com/BU-EC444/Team18-Chen-Dorsey-Erb/tree/master/quest-3)
 - [Link to video demo](https://youtu.be/4q7fANdBq2Q)
 - [Wearable Device Webpage](http://ec444team18.hopto.org:7000/)
 
@@ -79,12 +78,3 @@ https://macintoshhowto.com/internet/how-to-lower-the-power-output-of-your-wifi-r
 [Espressif LED control guide](https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html)
 
 [Espressif MCPWM guide](https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/mcpwm.html)
-
------
-
-## Reminders
-
-- Video recording in landscape not to exceed 120s
-- Each team member appears in video
-- Make sure video permission is set accessible to the instructors
-- Repo is private
