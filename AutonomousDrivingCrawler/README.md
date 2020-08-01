@@ -49,7 +49,6 @@ Sources:
 3. https://learn.sparkfun.com/tutorials/qrd1114-optical-detector-hookup-guide#example-circuit
 
 ## Supporting Artifacts
-- [Link to repo](https://github.com/BU-EC444/Team18-Chen-Dorsey-Erb/edit/master/quest-4)
 - [Link to video demo](https://youtu.be/1QwLT7r5-9I)
 
 
