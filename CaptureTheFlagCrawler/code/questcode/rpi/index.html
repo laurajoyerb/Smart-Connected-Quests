@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Crawler Control</title>
+  <style>
+    .video {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .center {
+      margin: auto;
+      padding: 10px;
+      text-align:center;
+      line-height: 5px;
+      font-family:candara;
+      font-weight:bold;
+      border-style:solid;
+      border-width:1px;
+    }
+    .t-title {
+      margin: auto;
+      padding: 10px;
+      text-align:center;
+      line-height: 5px;
+      font-family:candara;
+      font-weight:bold;
+    }
+    .s-table {
+      margin: auto;
+      padding: 10px;
+    }
+    .button-style {
+      text-align:center;
+      font-family:candara;
+      font-weight:bold;
+      border-style:solid;
+      border-width:1px;
+      width:80px;
+      height:50px;
+    }
+  </style>
+</head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+  <h1 style="text-align:center; font-family:verdana; color:red; font-weight:bold;">Quest 6: Capture the Flag Crawler-Style</h1>
+  <h3 style="text-align:center; font-family:candara;">Group 18</h3>
+  <p style="text-align:center; font-family:candara;">Yuting Chen, Erin Dorsey, Laura Joy Erb</p>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="https://cozmo.github.io/jsQR/jsQR.js"></script>
+  <img id="video" src="http://192.168.1.108:8081" class="video" crossOrigin="anonymous" style="width:640px; height:480px;"></img>
+  <canvas id="canvas" style="height:480px; width:640px; overflow:auto"></canvas>
+  <div class="center" id="output" style="color:white; background-color:red; width:640px; height:50px; text-align:center;">
+    <div id="outputMessage">No QR code detected</div>
+    <div hidden=""><b>Data:</b> <span id="outputData"></span></div>
+  </div>
+  <div style="margin:auto; padding-top:10px;padding-bottom:10px; padding-left:630px">
+    <button onclick="manual_button()" class="button-style" style="background-color:lightgray;width: 120px;">Auto/Manual</button>
+  </div>
+  <table style="margin:auto; padding-left:110px; width:50%;padding-bottom: 10px;">
+    <tr><td></td><td><button onclick="forward_button()" class="button-style" style="background-color:lightgray;">Forward</button></td><td></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td><button onclick="left_button()" class="button-style" style="background-color:lightgray;">Left</button></td>
+      <td><button onclick="stop_button()" class="button-style" style="background-color:red;">STOP</button></td>
+      <td><button onclick="right_button()" class="button-style" style="background-color:lightgray;">Right</button></td></tr>
+    <tr><td></td><td></td><td></td></tr>
+    <tr><td></td><td><button onclick="backward_button()" class="button-style" style="background-color:lightgray;">Backward</button></td><td></td></tr>
+  </table>
+  <div class="center" style="width:300px; height:50px;">
+    <p>Speed: <var id="Speed"></p>
+  </div>
+
+  <div class="t-title" style="width:400px; height:50px;">
+      <h1>Historic Split Data</h1>
+  </div>
+  <div class="s-table" style="width:90%;">
+    <table id="splitTable" class="w3-table w3-center w3-card-4">
+            <tr class="w3-theme w3-center">
+                <th>ID</th>
+                <th>Date</th>
+                <th>Split Hours</th>
+                <th>Split Minutes</th>
+                <th>Split Seconds</th>
+            </tr>
+  </div>
+
+</body>
+<script>
+// Image decode script
+    var video = document.getElementById("video");
+    var canvasElement = document.getElementById("canvas");
+    var canvas = canvasElement.getContext("2d");
+    var outputContainer = document.getElementById("output");
+    var outputMessage = document.getElementById("outputMessage");
+    var outputData = document.getElementById("outputData");
+
+    canvasElement.hidden = true;
+    outputContainer.hidden = false;
+    canvasElement.height = 480;
+    canvasElement.width = 640;
+
+    setInterval(function(){
+      canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+      var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+      var code = jsQR(imageData.data, imageData.width, imageData.height, {inversionAttempts: "dontInvert",});
+    //  console.log(code);
+      if (code) {
+        outputMessage.hidden = true;
+        outputData.parentElement.hidden = false;
+        outputData.innerText = code.data;
+      } else {
+        outputMessage.hidden = false;
+        outputData.parentElement.hidden = true;
+      }
+    }, 1000);
+
+</script>
+
+<script>
+  // Data display
+  var socket = io();
+  var i;
+  var latestHour = 0;
+  var latestMin = 0;
+  var latestSec = 0;
+
+  // Crawler control
+  var manual = 0;
+  var forward = 1;
+  var angle = 54;
+  var stop = 1;
+
+  function manual_button() {
+    manual = (manual)? 0:1;
+  }
+
+  function forward_button() {
+      forward = 1;
+      stop = 0;
+  }
+
+  function backward_button() {
+      forward = 0;
+  }
+
+  function left_button() {
+      angle += 3;
+  }
+
+  function right_button() {
+      angle -= 3;
+  }
+
+  function stop_button() {
+    //angle = 54;
+    forward = 1;
+    stop = (stop)? 0:1;
+  }
+
+  setInterval(function(){
+      socket.emit('toManual', manual)
+      socket.emit('moveForward', forward);
+      socket.emit('moveLeft', angle);
+      socket.emit('moveStop', stop);
+  }, 1000);
+
+  socket.on('speedData', function(data) {
+    // Update speed
+    Speed.innerHTML = data;
+  });
+
+  socket.on('sendData', function (data) {
+     console.log(data);
+      var str = data[Object.keys(data)][0].time.split(":");
+
+      if ((str[0] != latestHour) || (str[1] != latestMin) || (str[2] != latestSec)) {
+        if (str[0] > latestHour) {
+          latestHour = str[0];
+          latestMin = str[1];
+          latestSec = str[2];
+        } else if (str[1] > latestMin && str[0] == latestHour) {
+          latestMin = str[1];
+          latestSec = str[2];
+        } else if (str[2] > latestSec && str[1] == latestMin && str[0] == latestHour) {
+          latestSec = str[2];
+        }
+
+        if (str[0] == latestHour && str[1] == latestMin && str[2] == latestSec) {
+            var t = document.getElementById('splitTable');
+            var row = t.insertRow(1);
+            var id_cell = row.insertCell(0);
+            var date_cell = row.insertCell(1);
+            var split_hr = row.insertCell(2);
+            var split_min = row.insertCell(3);
+            var split_sec = row.insertCell(4);
+            var total = row.insertCell(5);
+
+            // Populate cells with data
+            id_cell.innerHTML = data[Object.keys(data)][0].ID;
+            date_cell.innerHTML = data[Object.keys(data)][0].time;
+            split_hr.innerHTML = data[Object.keys(data)][0].hour;
+            split_min.innerHTML = data[Object.keys(data)][0].min;
+            split_sec.innerHTML = data[Object.keys(data)][0].sec;
+
+        }
+      }
+  });
+</script>
+</html>
