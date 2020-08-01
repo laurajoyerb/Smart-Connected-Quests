@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Autonomous Vehicle</title>
+  <style>
+    .flex-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px;
+      width: 100%;
+      height: 200px;
+    }
+    .flex-container>div {
+      width: 25%;
+      margin: 5px;
+      padding: 10px;
+      align-items: center;
+      align-content: center;
+      border-radius: 5px;
+      background-color: #1faadb;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="text-align:center;font-family:verdana;color:#1261A0;">Quest 4: Autonomous Driving on Track</h1>
+  <h3 style="text-align:center;font-family:candara;">Group 18</h3>
+  <p style="text-align:center;font-family:candara;">Yuting Chen, Erin Dorsey, Laura Joy Erb</p>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <div align-content="center" style="background-color:aliceblue;">
+    <h3 style="font-family:verdana;font-weight:bold;text-align:center;">Control</h3>
+    <button onclick="crawlON()" style="position:relative; left:33%;">ON</button>
+    <button onclick="crawlOFF()" style="position:relative; left:63%;">OFF</button>
+    <p style="color:aliceblue;">~</p>
+  </div>
+  <script>
+  var on = false;
+  function crawlON() {
+    on = true;
+  }
+  function crawlOFF() {
+    on = false;
+  }
+
+  $(function () {
+    var socket = io();
+    setInterval(function(){
+        socket.emit('crawlSet', on);
+    }, 1000);
+  });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-4/code/questcode/control/ipchat/build/CMakeFiles/bootloader
+C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-4/code/questcode/control/ipchat/build/CMakeFiles/bootloader.rule
+C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-4/code/questcode/control/ipchat/build/CMakeFiles/bootloader-complete.rule
+C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-4/code/questcode/control/ipchat/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-4/code/questcode/control/ipchat/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-4/code/questcode/control/ipchat/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-4/code/questcode/control/ipchat/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-4/code/questcode/control/ipchat/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-4/code/questcode/control/ipchat/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+C:/Users/erind/Documents/Cpp/EC444/Team18-Chen-Dorsey-Erb/quest-4/code/questcode/control/ipchat/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule

@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Wearable Device</title>
+  <style>
+    .chart-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 30px;
+      margin: 15px;
+    }
+    .flex-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px;
+      width: 100%;
+      height: 200px;
+    }
+    .flex-container>div {
+      width: 25%;
+      margin: 5px;
+      padding: 10px;
+      align-items: center;
+      align-content: center;
+      border-radius: 5px;
+      background-color: #1faadb;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="text-align:center;font-family:verdana;color:#1261A0;">Quest 3: Wearable Device</h1>
+  <h3 style="text-align:center;font-family:candara;">Group 18</h3>
+  <p style="text-align:center;font-family:candara;">Yuting Chen, Erin Dorsey, Laura Joy Erb</p>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <div align-content="center" style="background-color:aliceblue;">
+    <h3 style="font-family:verdana;font-weight:bold;text-align:center;">Toggle Visibility:</h3>
+    <button onclick="hideAccel()" style="position:relative; left:10%;">Hide Acceleration</button>
+    <button onclick="hideSteps()" style="position:relative; left:20%;">Hide Steps</button>
+    <button onclick="hideWater()" style="position:relative; left:30%;">Hide Water</button>
+    <button onclick="hideTemp()" style="position:relative; left:40%;">Hide Temp</button>
+    <button onclick="hideBattery()" style="position:relative; left:50%;">Hide Battery</button>
+    <p style="color:aliceblue;">~</p>
+  </div>
+  <div id="accelChartContainer" style="height: 360px; width: 100%"></div>
+  <div align-content="center" class="flex-container">
+    <div id="Steps" style="background-color:lightblue;">
+      <p style="font-family:verdana;font-weight:bold;"><var id="count"></p>
+    </div>
+    <div id="Water1" style="background-color:lightblue;">
+      <p style="font-family:verdana;font-weight:bold;">Next Water Break: <span id="time"></span></p>
+    </div>
+    <div id="Water2" style="background-color:aliceblue;">
+      <input type="text" id="alarmText" placeholder="Enter an alarm time..."
+        style="font-size: 120%;font-style:italic;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+      <button onClick="setAlarm()" style="font-size:100%;font-family:verdana;font-weight:bold;">Set</button>
+    </div>
+  </div>
+  <div class="chart-container">
+    <div id="tempChartContainer" style="height: 360px; width: 50%;"></div>
+    <div id="batteryChartContainer" style="height: 360px; width: 50%;"></div>
+  </div>
+  <script>
+  function hideAccel() {
+    var x = document.getElementById("accelChartContainer");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+    function hideSteps() {
+      var x = document.getElementById("Steps");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    function hideWater() {
+      var x = document.getElementById("Water1");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+      var y = document.getElementById("Water2");
+      if (y.style.display === "none") {
+        y.style.display = "block";
+      } else {
+        y.style.display = "none";
+      }
+    }
+    function hideTemp() {
+      var x = document.getElementById("tempChartContainer");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    function hideBattery() {
+      var x = document.getElementById("batteryChartContainer");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    var alarmSet = null;
+    function setAlarm() {
+      alarmSet = document.getElementById("alarmText").value;
+    }
+    $(function () {
+      var socket = io();
+      socket.on('accelData', function (accelChart) {
+        var chart = new CanvasJS.Chart("accelChartContainer", accelChart);
+        chart.render();
+      });
+      socket.on('tempData', function (tempChart) {
+        var chart = new CanvasJS.Chart("tempChartContainer", tempChart);
+        chart.render();
+      });
+      socket.on('batteryData', function (batteryChart) {
+        var chart = new CanvasJS.Chart("batteryChartContainer", batteryChart);
+        chart.render();
+      });
+      socket.on('stepsData', function(steps){
+        document.getElementById("count").innerHTML = "Steps: " + steps;
+        stepCount = steps;
+      });
+      socket.on('timeData', function(time_left){
+        document.getElementById("time").innerHTML = time_left;
+      });
+      setInterval(function(){
+          socket.emit('alarmTime', alarmSet);
+          alarmSet = null;
+      }, 1000);
+    });
+  </script>
+</body>
+
+</html>
