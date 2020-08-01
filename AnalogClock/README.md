@@ -36,8 +36,6 @@ Console Output for An Alarm:
 ![Alarm Output](./images/alarm_console.png)
 
 ## Supporting Artifacts
-[Repo](https://github.com/BU-EC444/Team18-Chen-Dorsey-Erb/edit/master/quest-1)
-
 [Video Link](https://drive.google.com/open?id=1eJ9ZWE4Y3rQb74IJ_91syjoeEhrUA0Ml)
 
 ## Investigative question
@@ -48,12 +46,3 @@ Clocks can be synchronized with one ESP functioning as a "master" clock and the 
 https://github.com/BU-EC444/code-examples/tree/master/i2c-display
 https://github.com/adafruit/Adafruit_LED_Backpack/blob/master/Adafruit_LEDBackpack.cpp
 https://github.com/espressif/esp-idf/tree/master/examples/peripherals/mcpwm/mcpwm_servo_control
-
------
-
-## Reminders
-
-- Video recording in landscape not to exceed 90s
-- Each team member appears in video
-- Make sure video permission is set accessible to the instructors
-- Repo is private
