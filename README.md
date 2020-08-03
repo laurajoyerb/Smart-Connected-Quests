@@ -1,4 +1,4 @@
-# Smart-Connected-Quests
+# Smart and Connected Systems - Quests
 
 This repo is a collection of projects developed during ENG EC 444: Smart and Connected Systems taught by Professor Thomas Little and Dr. Emily Lam at Boston University. 
 
