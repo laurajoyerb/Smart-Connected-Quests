@@ -22,4 +22,4 @@ This quest is the first to use the crawlers. The crawlers are small vehicles con
 In this quest, we created portable, secure key fobs as well as beacons that served as our locks. We used NFC (near field communication) and IR for communication between the fobs and the hub beacons. The beacons logged attempts to enter and checked against database entries before either opening or locking the hub based on the key code given. 
 
 ### Capture the Flag Crawler
-This is the final quest for the crawlers and the course. The crawlers drive autonomously along straight lines
+This is the final quest for the crawlers and the course. The crawlers have the ability to drive autonomously in straight lines and turn to make corners. They can also be controlled remotely from a web interface. The crawlers also obey "traffic lights" on the course simulated by IR beacons that switch between green, yellow, and red. The crawler uses a webcam to stream live video to the web interface as well as to decode a QR code at the end of the course and "capture the flag".
